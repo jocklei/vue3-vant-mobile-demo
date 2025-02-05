@@ -8,7 +8,7 @@ English / [简体中文](./README.zh-CN.md)
 
 An mobile web apps template based on the Vue 3 ecosystem.
 
-一个基于 Vue 3 生态系统的移动 web 应用模板，帮助你快速完成业务开发。
+一个集成了Vue3和vant组件库的生态系统的移动web应用模板，帮助你快速完成业务开发，功能不断添加中，欢迎star和fork！
 
 <p>
 <img src="https://img.shields.io/github/license/easy-temps/vue3-vant-mobile-demo" alt="license" />
@@ -31,6 +31,8 @@ An mobile web apps template based on the Vue 3 ecosystem.
 ## Features
 
 - ⚡️ [Vue 3](https://github.com/vuejs/core), [Vite 6](https://github.com/vitejs/vite), [pnpm](https://pnpm.io/), [esbuild](https://github.com/evanw/esbuild) - born with fastness
+
+- 📱 [web3.js](https://docs.web3js.org/) Integrated Dapp interaction plugin web3.js
 
 - 🗂 [File based routing](./src/router)
 
