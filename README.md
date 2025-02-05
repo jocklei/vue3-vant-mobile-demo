@@ -2,13 +2,13 @@
 
 <img src="https://cdn.jsdelivr.net/gh/easy-temps/easy-static/cover.png" alt="cover" />
 
-<h1 align="center">vue3-vant-mobile-demo</h1>
+<h1 align="center">vue3-vant-mobile-demo/vue3-Dappp-demo</h1>
 
 English / [简体中文](./README.zh-CN.md)
 
 An mobile web apps template based on the Vue 3 ecosystem.
 
-一个集成了Vue3和vant组件库的生态系统的移动web应用模板，帮助你快速完成业务开发，功能不断添加中，欢迎star和fork！
+一个集成了Vue3和vant组件库的生态系统的移动web应用和Dapp模板，帮助你快速完成业务开发，功能不断添加中，欢迎star和fork！
 
 <p>
 <img src="https://img.shields.io/github/license/easy-temps/vue3-vant-mobile-demo" alt="license" />
@@ -32,7 +32,7 @@ An mobile web apps template based on the Vue 3 ecosystem.
 
 - ⚡️ [Vue 3](https://github.com/vuejs/core), [Vite 6](https://github.com/vitejs/vite), [pnpm](https://pnpm.io/), [esbuild](https://github.com/evanw/esbuild) - born with fastness
 
-- 📱 [web3.js](https://docs.web3js.org/) Integrated Dapp interaction plugin web3.js
+- 📱 [Web3.js](https://docs.web3js.org/) Integrated Dapp interaction plugin Web3.js
 
 - 🗂 [File based routing](./src/router)
 
