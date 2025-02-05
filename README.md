@@ -2,7 +2,7 @@
 
 <img src="https://cdn.jsdelivr.net/gh/easy-temps/easy-static/cover.png" alt="cover" />
 
-<h1 align="center">vue3-vant-mobile-demo/vue3-Dappp-demo</h1>
+<h1 align="center">vue3-vant-mobile-demo/vue3-Dapp-demo</h1>
 
 English / [简体中文](./README.zh-CN.md)
 
