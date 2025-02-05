@@ -36,6 +36,7 @@
     "vant": "^4.9.15",
     "vconsole": "^3.15.1",
     "vue": "^3.5.13",
+    "vue-hooks-plus": "^2.2.3",
     "vue-i18n": "^10.0.5",
     "vue-router": "^4.5.0",
     "vue-uuid": "^3.0.0",

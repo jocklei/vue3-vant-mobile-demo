@@ -40,6 +40,10 @@ An mobile web apps template based on the Vue 3 ecosystem.
 
 - 🍍 [State Management via Pinia](https://pinia.vuejs.org)
 
+- 💪 [Vue Composite Toolset VueUse](https://vueuse.nodejs.cn/)
+
+- 🪶 [VueHooks](https://inhiblabcore.github.io/docs/hooks/)
+
 - 📲 [PWA](https://github.com/antfu/vite-plugin-pwa)
 
 - 🎨 [UnoCSS](https://github.com/antfu/unocss) - the instant on-demand atomic CSS engine
