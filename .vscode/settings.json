@@ -62,5 +62,9 @@
     "default": true,
     "MD033": false,
     "MD041": false
-  }
+  },
+  "marscode.codeCompletionPro": {
+    "enableCodeCompletionPro": true
+  },
+  "marscode.enableInlineCommand": true
 }
