@@ -20,11 +20,6 @@ const useWeb3Store = defineStore('web3', () => {
   web3.eth.net.isListening()
     .then(() => {
       console.log('Connected to the Ethereum network');
-
-      web3.eth.subscribe('pendingTransactions', (error, result) => {
-        console.log('result: ', result)
-        console.log('error: ', error)
-      });
     })
 
   /**
@@ -146,11 +141,11 @@ const useWeb3Store = defineStore('web3', () => {
   /**
    * 将指定的金额从 wei 单位转换为 ETH 单位。
    *
-   * @param {number | string} value - 要转换的金额，以 wei 为单位。
+   * @param {bigint} value - 要转换的金额，以 wei 为单位。
    * @returns {string} 转换后的金额，以 ETH 为单位。
    */
-  function toEth(value: number | string) {
-    return web3.utils.fromWei(value, "wei")
+  function toEth(value: bigint): string {
+    return web3.utils.fromWei(value, "ether")
   }
 
   /**
