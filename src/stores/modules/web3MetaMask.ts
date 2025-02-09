@@ -69,7 +69,7 @@ const useWeb3Store = defineStore('web3-meta-mask', () => {
    * @description 获取指定地址的账户余额。
    * @author jocklei
    * @date 2025/02/09
-   * @param {string} address
+   * @param {string} address - 要查询余额的地址
    * @return {*}  {Promise<bigint>}
    */
   async function getBalance(address: string): Promise<bigint> {
@@ -90,8 +90,8 @@ const useWeb3Store = defineStore('web3-meta-mask', () => {
    * @description 根据提供的 ABI 和地址创建一个新的 Web3 合约实例。
    * @author jocklei
    * @date 2025/02/09
-   * @param {*} abi
-   * @param {string} address
+   * @param {*} abi - 合约 ABI
+   * @param {string} address - 合约地址
    * @return {*}
    */
   async function createContract(abi: any, address: string) {
@@ -102,7 +102,7 @@ const useWeb3Store = defineStore('web3-meta-mask', () => {
    * @description 获取指定地址的待处理交易数量。
    * @author jocklei
    * @date 2025/02/09
-   * @param {string} address
+   * @param {string} address - 地址
    * @return {*}  {Promise<bigint>}
    */
   async function getTransactionCount(address: string): Promise<bigint> {
@@ -123,7 +123,7 @@ const useWeb3Store = defineStore('web3-meta-mask', () => {
    * @description 估算执行指定交易所需的Gas量。
    * @author jocklei
    * @date 2025/02/09
-   * @param {Transaction} txData
+   * @param {Transaction} txData - 交易数据
    * @return {*}  {Promise<bigint>}
    */
   async function estimateGas(txData: Transaction): Promise<bigint> {
@@ -134,7 +134,7 @@ const useWeb3Store = defineStore('web3-meta-mask', () => {
    * @description 将指定的金额从 ETH 单位转换为 wei 单位。
    * @author jocklei
    * @date 2025/02/09
-   * @param {(bigint | string)} value
+   * @param {(bigint | string)} value - 金额
    * @return {*}  {string}
    */
   function toWei(value: bigint | string): string {
@@ -145,7 +145,7 @@ const useWeb3Store = defineStore('web3-meta-mask', () => {
    * @description 将指定的金额从 wei 单位转换为 ETH 单位。
    * @author jocklei
    * @date 2025/02/09
-   * @param {(bigint | string)} value
+   * @param {(bigint | string)} value - 金额
    * @return {*}  {string}
    */
   function toEth(value: bigint | string): string {
@@ -156,7 +156,7 @@ const useWeb3Store = defineStore('web3-meta-mask', () => {
    * @description 将给定的数值转换为十六进制字符串。
    * @author jocklei
    * @date 2025/02/09
-   * @param {number} nonce
+   * @param {number} nonce - 数值
    * @return {*}  {string}
    */
   function toHex(nonce: number): string {
@@ -167,8 +167,8 @@ const useWeb3Store = defineStore('web3-meta-mask', () => {
    * @description 签署交易
    * @author jocklei
    * @date 2025/02/09
-   * @param {Transaction} txData
-   * @param {string} privateKey
+   * @param {Transaction} txData - 交易数据
+   * @param {string} privateKey - 私钥
    * @return {*}  {Promise<object>}
    */
   async function signTransaction(txData: Transaction, privateKey: string): Promise<object> {
@@ -179,9 +179,9 @@ const useWeb3Store = defineStore('web3-meta-mask', () => {
    * @description 发送一个未签名的交易。
    * @author jocklei
    * @date 2025/02/09
-   * @param {string} from
-   * @param {string} to
-   * @param {string} value
+   * @param {string} from - 发送者地址
+   * @param {string} to - 接收者地址
+   * @param {string} value - 金额
    * @return {*}  {Promise<any>}
    */
   async function sendTransaction(from: string, to: string, value: string): Promise<any> {
@@ -201,7 +201,7 @@ const useWeb3Store = defineStore('web3-meta-mask', () => {
    * @description 发送一个已签名的交易。
    * @author jocklei
    * @date 2025/02/09
-   * @param {string} raw
+   * @param {string} raw - 已签名的交易数据
    * @return {*}  {Promise<any>}
    */
   async function sendSignedTransaction(raw: string): Promise<any> {
@@ -210,21 +210,21 @@ const useWeb3Store = defineStore('web3-meta-mask', () => {
 
   return {
     web3,
-    createAccount,
-    getAccounts,
-    getBalance,
-    batchRequest,
-    createContract,
-    getGasPrice,
-    estimateGas,
     toWei,
     toEth,
     toHex,
+    getAccounts,
+    getBalance,
+    batchRequest,
+    getGasPrice,
+    estimateGas,
+    createAccount,
+    createContract,
     connectMetaMask,
     signTransaction,
     sendTransaction,
-    sendSignedTransaction,
     getTransactionCount,
+    sendSignedTransaction
   }
 })
 export default useWeb3Store
