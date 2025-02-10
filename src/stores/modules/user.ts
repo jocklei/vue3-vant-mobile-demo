@@ -43,8 +43,7 @@ const useUserStore = defineStore('user', () => {
    * @return {*}
    */
   const login = async (loginForm: LoginData) => {
-    const { data } = await userLogin(loginForm)
-    return data
+    return await userLogin(loginForm)
   }
 
   /**
@@ -80,8 +79,7 @@ const useUserStore = defineStore('user', () => {
    * @return {*}
    */
   const getCode = async () => {
-    const data = await getEmailCode()
-    return data
+    return await getEmailCode()
   }
 
   /**
@@ -91,8 +89,7 @@ const useUserStore = defineStore('user', () => {
    * @return {*}
    */
   const reset = async () => {
-    const data = await resetPassword()
-    return data
+    return await resetPassword()
   }
 
   /**
@@ -102,8 +99,7 @@ const useUserStore = defineStore('user', () => {
    * @return {*}
    */
   const register = async () => {
-    const data = await userRegister()
-    return data
+    return await userRegister()
   }
 
   return {
