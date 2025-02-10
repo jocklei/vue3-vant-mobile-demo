@@ -3,15 +3,15 @@ import { handleHotUpdate, routes } from 'vue-router/auto-routes'
 
 import 'nprogress/nprogress.css'
 import NProgress from 'nprogress'
+import { useTitle } from '@vueuse/core'
 
 import useUserStore from '@/stores/modules/user'
 import useAuthStore from '@/stores/modules/auth'
 import useRouteCacheStore from '@/stores/modules/routeCache'
 
-import setPageTitle from '@/utils/set-page-title'
-
 import type { EnhancedRouteLocation } from './types'
 
+const title = useTitle()
 NProgress.configure({ showSpinner: false, parent: '#app' })
 
 const router = createRouter({
@@ -35,7 +35,7 @@ router.beforeEach(async (to: EnhancedRouteLocation, _from, next) => {
   routeCacheStore.addRoute(to)
 
   // Set page title
-  setPageTitle(to.meta.title)
+  title.value = to.meta.title
 
   if (authStore.isLogin() && !userStore.userInfo?.uid) {
     await userStore.info()
