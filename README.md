@@ -166,6 +166,10 @@ And, enjoy :)
 Just run and visit <http://localhost:3000>
 
 ```bash
+pnpm install
+```
+
+```bash
 pnpm dev
 ```
 
