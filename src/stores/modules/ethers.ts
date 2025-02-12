@@ -11,13 +11,13 @@ const useEthersStore = defineStore('ethers', () => {
   });
 
   /**
-   * @description 获取指定地址的以太坊余额
+   * @description 获取指定地址的余额
    * @author jocklei
-   * @date 2025/02/09
-   * @param {string} address - 要查询余额的地址
-   * @return {*}
+   * @date 2025/02/12
+   * @param {string} address
+   * @return {*}  {Promise<bigint>}
    */
-  async function getBalance(address: string) {
+  async function getBalance(address: string): Promise<bigint> {
     return await provider.getBalance(address);
   }
 
@@ -33,14 +33,14 @@ const useEthersStore = defineStore('ethers', () => {
   }
 
   /**
-   * @description 使用私钥和提供者创建一个新的以太坊钱包实例
+   * @description 使用私钥创建钱包
    * @author jocklei
-   * @date 2025/02/09
-   * @param {string} privateKey - 以太坊钱包的私钥
-   * @param {ethers.JsonRpcProvider} provider - 以太坊提供者
-   * @return {*}
+   * @date 2025/02/12
+   * @param {string} privateKey
+   * @param {ethers.JsonRpcProvider} provider
+   * @return {*}  {ethers.Wallet}
    */
-  function wallet(privateKey: string, provider: ethers.JsonRpcProvider) {
+  function wallet(privateKey: string, provider: ethers.JsonRpcProvider): ethers.Wallet {
     return new ethers.Wallet(privateKey, provider);
   }
 

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-import { Web3, type Transaction, type Web3Account } from 'web3'
+import { Contract, Web3, type Transaction, type Web3Account } from 'web3'
 
 export interface TransactionParams {
   from: string; to: string;
@@ -19,6 +19,9 @@ const useWeb3Store = defineStore('web3', () => {
     .then(() => {
       console.log('Connected to the Ethereum network');
     })
+    .catch((error) => {
+      console.error('Failed to connect to the Ethereum network:', error);
+    });
 
   /**
    * @description 创建一个新的 Web3 账户。
@@ -69,7 +72,7 @@ const useWeb3Store = defineStore('web3', () => {
    * @param {string} address - 合约地址
    * @return {*}
    */
-  function createContract(abi: any, address: string) {
+  function createContract(abi: any, address: string): Contract<any> {
     return new web3.eth.Contract(abi, address)
   }
 

@@ -2,6 +2,7 @@ import { ref } from 'vue'
 import type { Ref } from 'vue'
 
 import { defineStore } from 'pinia'
+import type { AxiosResponse } from 'axios'
 import type { LoginData, UserState } from '@/api/user'
 
 import {
@@ -29,7 +30,7 @@ const useUserStore = defineStore('user', () => {
   /**
    * @description Clear user's information
    * @author jocklei
-   * @date 2025/02/09
+   * @date 2025/02/12
    */
   const clearInfo = (): void => {
     userInfo.value = null
@@ -38,18 +39,18 @@ const useUserStore = defineStore('user', () => {
   /**
    * @description User login
    * @author jocklei
-   * @date 2025/02/09
-   * @param {LoginData} loginForm LoginData
-   * @return {*}
+   * @date 2025/02/12
+   * @param {LoginData} loginForm
+   * @return {*}  {Promise<AxiosResponse>}
    */
-  const login = async (loginForm: LoginData) => {
+  const login = async (loginForm: LoginData): Promise<AxiosResponse> => {
     return await userLogin(loginForm)
   }
 
   /**
-   * @description Get user's information from the server and set it to the store
+   * @description Get user's information
    * @author jocklei
-   * @date 2025/02/09
+   * @date 2025/02/12
    * @return {*}  {Promise<void>}
    */
   const info = async (): Promise<void> => {
@@ -58,12 +59,12 @@ const useUserStore = defineStore('user', () => {
   }
 
   /**
-   * @description User logout and clear user's information in the store
+   * @description User logout
    * @author jocklei
-   * @date 2025/02/09
-   * @return {*}  {Promise<void>}
+   * @date 2025/02/12
+   * @return {*}  {(Promise<AxiosResponse | void>)}
    */
-  const logout = async (): Promise<void> => {
+  const logout = async (): Promise<AxiosResponse | void> => {
     try {
       await userLogout()
     }
@@ -73,32 +74,32 @@ const useUserStore = defineStore('user', () => {
   }
 
   /**
-   * @description Get email verification code from the server
+   * @description Get email verification code
    * @author jocklei
-   * @date 2025/02/09
-   * @return {*}
+   * @date 2025/02/12
+   * @return {*}  {Promise<AxiosResponse>}
    */
-  const getCode = async () => {
+  const getCode = async (): Promise<AxiosResponse> => {
     return await getEmailCode()
   }
 
   /**
-   * @description Reset user's password from the server
+   * @description Reset user's password
    * @author jocklei
-   * @date 2025/02/09
-   * @return {*}
+   * @date 2025/02/12
+   * @return {*}  {Promise<AxiosResponse>}
    */
-  const reset = async () => {
+  const reset = async (): Promise<AxiosResponse> => {
     return await resetPassword()
   }
 
   /**
-   * @description User register from the server
+   * @description Register user
    * @author jocklei
-   * @date 2025/02/09
-   * @return {*}
+   * @date 2025/02/12
+   * @return {*}  {Promise<AxiosResponse>}
    */
-  const register = async () => {
+  const register = async (): Promise<AxiosResponse> => {
     return await userRegister()
   }
 

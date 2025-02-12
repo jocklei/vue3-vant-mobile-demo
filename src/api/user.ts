@@ -1,4 +1,5 @@
 import http from '@/utils/http'
+import type { AxiosResponse } from 'axios'
 
 export interface LoginData {
   email: string
@@ -18,66 +19,60 @@ export interface UserState {
 /**
  * @description User login
  * @author jocklei
- * @date 2025/02/10
- * @export
+ * @date 2025/02/12
  * @param {LoginData} data
- * @return {*}  {Promise<any>}
+ * @return {*}  {Promise<AxiosResponse>}
  */
-export function login(data: LoginData): Promise<any> {
+export function login(data: LoginData): Promise<AxiosResponse> {
   return http.post<LoginRes>('/auth/login', data)
 }
 
 /**
  * @description User logout
  * @author jocklei
- * @date 2025/02/10
- * @export
- * @return {*}
+ * @date 2025/02/12
+ * @return {*}  {Promise<AxiosResponse>}
  */
-export function logout(): Promise<any> {
+export function logout(): Promise<AxiosResponse> {
   return http.post('/user/logout')
 }
 
 /**
- * @description Get user information
+ * @description Get user's information
  * @author jocklei
- * @date 2025/02/10
- * @export
- * @return {*}  {Promise<any>}
+ * @date 2025/02/12
+ * @return {*}  {Promise<AxiosResponse>}
  */
-export function getUserInfo(): Promise<any> {
+export function getUserInfo(): Promise<AxiosResponse> {
   return http.get<UserState>('/user/me')
 }
 
 /**
- * @description Get user email code
+ * @description Get email verification code
  * @author jocklei
- * @date 2025/02/10
- * @export
- * @return {*}  {Promise<any>}
+ * @date 2025/02/12
+ * @return {*}  {Promise<AxiosResponse>}
  */
-export function getEmailCode(): Promise<any> {
+export function getEmailCode(): Promise<AxiosResponse> {
   return http.get('/user/email-code')
 }
 
 /**
- * @description Reset password.
+ * @description Reset user's password
  * @author jocklei
- * @date 2025/02/10
- * @export
- * @return {*}  {Promise<any>}
+ * @date 2025/02/12
+ * @return {*}  {Promise<AxiosResponse>}
  */
-export function resetPassword(): Promise<any> {
+export function resetPassword(): Promise<AxiosResponse> {
   return http.post('/user/reset-password')
 }
 
 /**
- * @description Register.
+ * @description Register user
  * @author jocklei
- * @date 2025/02/10
- * @export
- * @return {*}  {Promise<any>}
+ * @date 2025/02/12
+ * @return {*}  {Promise<AxiosResponse>}
  */
-export function register(): Promise<any> {
+export function register(): Promise<AxiosResponse> {
   return http.post('/user/register')
 }
