@@ -40,7 +40,6 @@ const useWeb3Store = defineStore('web3', () => {
     return await web3.eth.getAccounts()
   };
 
-
   /**
    * @description 获取指定地址的账户余额。
    * @author jocklei
