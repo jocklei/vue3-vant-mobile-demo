@@ -166,7 +166,7 @@ And, enjoy :)
 Just run and visit <http://localhost:3000>
 
 ```bash
-pnpm install
+pnpm install && cd vue3-vant-mobile-demo
 ```
 
 ```bash
