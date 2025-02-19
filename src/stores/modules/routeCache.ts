@@ -12,7 +12,7 @@ const useRouteCacheStore = defineStore('route-cache', () => {
    * @date 2025/02/12
    * @param {EnhancedRouteLocation} route
    */
-  const addRoute = (route : EnhancedRouteLocation) => {
+  const addRoute = (route: EnhancedRouteLocation) => {
     if (routeCaches.value.includes(route.name)) {
       return
     }

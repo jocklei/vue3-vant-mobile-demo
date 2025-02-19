@@ -1,18 +1,18 @@
 <script setup lang="ts">
-  import { queryProse } from '@/api'
+import { queryProse } from '@/api'
 
-  const messages = ref<string>('')
+const messages = ref<string>('')
 
-  onMounted(() => {
-    pull()
+onMounted(() => {
+  pull()
+})
+
+function pull() {
+  queryProse().then(({ code, result }) => {
+    if (code === 0)
+      messages.value = result
   })
-
-  function pull() {
-    queryProse().then(({ code, result }) => {
-      if (code === 0)
-        messages.value = result
-    })
-  }
+}
 </script>
 
 <template>
@@ -48,23 +48,23 @@
 </route>
 
 <style lang="less" scoped>
-  .data-label {
-    color: #969799;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
-    margin-top: 10px;
-  }
+.data-label {
+  color: #969799;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  margin-top: 10px;
+}
 
-  .data-content {
-    height: 300px;
-    padding: 20px;
-    line-height: 30px;
-    margin-top: 20px;
-    font-size: 16px;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.data-content {
+  height: 300px;
+  padding: 20px;
+  line-height: 30px;
+  margin-top: 20px;
+  font-size: 16px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 </style>

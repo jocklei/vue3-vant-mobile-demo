@@ -23,7 +23,7 @@ import { VueRouterAutoImports } from 'unplugin-vue-router'
 
 import { createViteVConsole } from './vconsole'
 
-export function createVitePlugins(mode : string) {
+export function createVitePlugins(mode: string) {
   const env = loadEnv(mode, process.cwd())
 
   return [

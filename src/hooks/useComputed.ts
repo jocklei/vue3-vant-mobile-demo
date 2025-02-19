@@ -1,9 +1,9 @@
 import { computed } from 'vue'
 
-export default function useComputed<T>(fn : (...args : any[]) => T, maxCacheSize : number = 50) {
+export default function useComputed<T>(fn: (...args: any[]) => T, maxCacheSize: number = 50) {
   const map = new Map()
 
-  return function (...args : any) {
+  return function (...args: any) {
     const key = JSON.stringify(args)
 
     if (map.has(key)) {

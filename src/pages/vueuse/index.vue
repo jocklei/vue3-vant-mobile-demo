@@ -1,21 +1,16 @@
 <script setup lang="ts">
-
-import { useMouse } from '@vueuse/core'
-import { useBattery } from '@vueuse/core'
-import { onKeyStroke } from '@vueuse/core'
-import { useGeolocation } from '@vueuse/core'
+import { onKeyStroke, useBattery, useGeolocation, useMouse } from '@vueuse/core'
 
 const { x, y } = useMouse()
 const { level } = useBattery()
 const { coords } = useGeolocation()
 
-const key = ref({});
+const key = ref({})
 
 onKeyStroke(true, (e) => {
   e.preventDefault()
   key.value = e.key
 })
-
 </script>
 
 <template>
@@ -35,7 +30,7 @@ onKeyStroke(true, (e) => {
         键盘监听: {{ key }} 键
       </van-cell>
       <van-cell>
-        电量：{{ (level/1)*100 }} %
+        电量：{{ (level / 1) * 100 }} %
       </van-cell>
     </VanCellGroup>
   </div>

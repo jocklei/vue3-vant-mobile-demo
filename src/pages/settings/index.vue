@@ -1,27 +1,27 @@
 <script setup lang="ts">
-  import { showConfirmDialog } from 'vant'
+import { showConfirmDialog } from 'vant'
 
-  import router from '@/router'
-  import { useAuthStore, useUserStore } from '@/stores'
+import router from '@/router'
+import { useAuthStore, useUserStore } from '@/stores'
 
-  import { version } from '~root/package.json'
+import { version } from '~root/package.json'
 
-  const { t } = useI18n()
-  const authStore = useAuthStore()
-  const userStore = useUserStore()
+const { t } = useI18n()
+const authStore = useAuthStore()
+const userStore = useUserStore()
 
-  const userInfo = computed(() => userStore.userInfo)
+const userInfo = computed(() => userStore.userInfo)
 
-  function Logout() {
-    showConfirmDialog({ title: t('settings.comfirmTitle') })
-      .then(async () => {
-        await userStore.logout()
-        router.push({ name: 'home' })
-      })
-      .finally(() => {
-        authStore.clearToken()
-      })
-  }
+function Logout() {
+  showConfirmDialog({ title: t('settings.comfirmTitle') })
+    .then(async () => {
+      await userStore.logout()
+      router.push({ name: 'home' })
+    })
+    .finally(() => {
+      authStore.clearToken()
+    })
+}
 </script>
 
 <template>
@@ -37,9 +37,9 @@
 </template>
 
 <style scoped>
-  .van-text-color {
-    --van-cell-text-color: var(--van-red);
-  }
+.van-text-color {
+  --van-cell-text-color: var(--van-red);
+}
 </style>
 
 <route lang="json5">

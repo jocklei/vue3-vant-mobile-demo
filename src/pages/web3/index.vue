@@ -3,19 +3,14 @@ import Accounts from './accounts.vue'
 import Transaction from './transaction.vue'
 import CreateAccount from './create-account.vue'
 import SignedTransaction from './signedTransaction.vue'
-
-import { useEthersStore } from '@/stores'
-
-const useEthers = useEthersStore()
-
 </script>
 
 <template>
   <div>
-    <Accounts></Accounts>
-    <CreateAccount></CreateAccount>
-    <Transaction></Transaction>
-    <SignedTransaction></SignedTransaction>
+    <Accounts />
+    <CreateAccount />
+    <Transaction />
+    <SignedTransaction />
   </div>
 </template>
 

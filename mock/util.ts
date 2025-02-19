@@ -5,7 +5,7 @@ const responseBody = {
   code: 0,
 }
 
-export function builder(data : unknown, message = 'success', code = 0) {
+export function builder(data: unknown, message = 'success', code = 0) {
   responseBody.result = data
 
   if (message !== undefined && message !== null)

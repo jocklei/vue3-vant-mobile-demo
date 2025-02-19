@@ -1,14 +1,14 @@
 import { defineStore } from 'pinia'
 
-import { ethers } from "ethers";
+import { ethers } from 'ethers'
 
 const useEthersStore = defineStore('ethers', () => {
-  const provider = new ethers.JsonRpcProvider(`${import.meta.env.VITE_APP_WEB3_PROVIDER}`);
+  const provider = new ethers.JsonRpcProvider(`${import.meta.env.VITE_APP_WEB3_PROVIDER}`)
 
   // 获取当前网络信息
   provider.getNetwork().then((network) => {
-    console.log('Connected to network, chainId:', network.chainId);
-  });
+    console.log('Connected to network, chainId:', network.chainId)
+  })
 
   /**
    * @description 获取指定地址的余额
@@ -18,7 +18,7 @@ const useEthersStore = defineStore('ethers', () => {
    * @return {*}  {Promise<bigint>}
    */
   async function getBalance(address: string): Promise<bigint> {
-    return await provider.getBalance(address);
+    return await provider.getBalance(address)
   }
 
   /**
@@ -29,7 +29,7 @@ const useEthersStore = defineStore('ethers', () => {
    * @return {*}  {string}
    */
   function toEth(balance: bigint): string {
-    return ethers.formatEther(balance);
+    return ethers.formatEther(balance)
   }
 
   /**
@@ -41,13 +41,13 @@ const useEthersStore = defineStore('ethers', () => {
    * @return {*}  {ethers.Wallet}
    */
   function wallet(privateKey: string, provider: ethers.JsonRpcProvider): ethers.Wallet {
-    return new ethers.Wallet(privateKey, provider);
+    return new ethers.Wallet(privateKey, provider)
   }
 
   return {
     toEth,
     wallet,
-    getBalance
-  };
-});
+    getBalance,
+  }
+})
 export default useEthersStore

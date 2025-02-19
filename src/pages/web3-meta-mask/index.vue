@@ -1,20 +1,24 @@
 <script setup lang="ts">
-  import { useWeb3MetaMaskStore } from '@/stores'
+import { useWeb3MetaMaskStore } from '@/stores'
 
-  import Accounts from './accounts.vue'
-  import Transaction from './transaction.vue'
-  import CreateAccount from './create-account.vue'
-  import SignedTransaction from './signedTransaction.vue'
+import Accounts from './accounts.vue'
+import Transaction from './transaction.vue'
+import CreateAccount from './create-account.vue'
+import SignedTransaction from './signedTransaction.vue'
 
-  const useWeb3MetaMask = useWeb3MetaMaskStore()
+const useWeb3MetaMask = useWeb3MetaMaskStore()
+
+onMounted(() => {
+  console.log(useWeb3MetaMask)
+})
 </script>
 
 <template>
   <div>
-    <Accounts></Accounts>
-    <CreateAccount></CreateAccount>
-    <Transaction></Transaction>
-    <SignedTransaction></SignedTransaction>
+    <Accounts />
+    <CreateAccount />
+    <Transaction />
+    <SignedTransaction />
   </div>
 </template>
 

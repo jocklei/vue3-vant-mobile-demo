@@ -1,25 +1,26 @@
-import { showToast } from 'vant';
+import { showToast } from 'vant'
 import { defineStore } from 'pinia'
-import { Web3, type Transaction, type Web3Account } from 'web3'
+import { type Transaction, Web3, type Web3Account } from 'web3'
 
 declare global {
   interface Window {
-    ethereum: any;
+    ethereum: any
   }
 }
 
 export interface TransactionParams {
-  from: string; to: string;
-  nonce: number;
-  value: number | string;
-  gas: number;
+  from: string
+  to: string
+  nonce: number
+  value: number | string
+  gas: number
   gasPrice: number
   privateKey: string
 }
 
 const useWeb3Store = defineStore('web3-meta-mask', () => {
   // Web3 实例
-  let web3: Web3;
+  let web3: Web3
 
   connectMetaMask()
 
@@ -34,14 +35,14 @@ const useWeb3Store = defineStore('web3-meta-mask', () => {
    */
   async function connectMetaMask(): Promise<void> {
     if (!window.ethereum) {
-      showToast('Please install MetaMask first!');
-      return;
+      showToast('Please install MetaMask first!')
+      return
     }
 
-    const web3Providers = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    const web3Providers = await window.ethereum.request({ method: 'eth_requestAccounts' })
 
     if (web3Providers?.length > 0) {
-      web3 = new Web3(window.ethereum);
+      web3 = new Web3(window.ethereum)
     }
   }
 
@@ -62,8 +63,8 @@ const useWeb3Store = defineStore('web3-meta-mask', () => {
    * @return {*}  {Promise<string[]>}
    */
   async function getAccounts(): Promise<string[]> {
-    return await web3.eth.getAccounts();
-  };
+    return await web3.eth.getAccounts()
+  }
 
   /**
    * @description 获取指定地址的账户余额。
@@ -138,7 +139,7 @@ const useWeb3Store = defineStore('web3-meta-mask', () => {
    * @return {*}  {string}
    */
   function toWei(value: bigint | string): string {
-    return web3.utils.toWei(value, "wei")
+    return web3.utils.toWei(value, 'wei')
   }
 
   /**
@@ -149,7 +150,7 @@ const useWeb3Store = defineStore('web3-meta-mask', () => {
    * @return {*}  {string}
    */
   function toEth(value: bigint | string): string {
-    return web3.utils.fromWei(value, "ether")
+    return web3.utils.fromWei(value, 'ether')
   }
 
   /**
@@ -189,7 +190,7 @@ const useWeb3Store = defineStore('web3-meta-mask', () => {
       const params = {
         from,
         to,
-        value: toWei(value)
+        value: toWei(value),
       }
       web3.eth.sendTransaction(params)
         .then(resolve)
@@ -224,7 +225,7 @@ const useWeb3Store = defineStore('web3-meta-mask', () => {
     signTransaction,
     sendTransaction,
     getTransactionCount,
-    sendSignedTransaction
+    sendSignedTransaction,
   }
 })
 export default useWeb3Store

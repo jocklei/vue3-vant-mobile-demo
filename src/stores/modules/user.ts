@@ -30,7 +30,7 @@ const useUserStore = defineStore('user', () => {
   /**
    * @description Clear user's information
    * @author jocklei
-   * @date 2025/02/12
+   * @date 2025/02/18
    */
   const clearInfo = (): void => {
     userInfo.value = null
@@ -110,7 +110,7 @@ const useUserStore = defineStore('user', () => {
     reset,
     getCode,
     register,
-    userInfo
+    userInfo,
   }
 }, {
   persist: true,

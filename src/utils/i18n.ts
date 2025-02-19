@@ -12,7 +12,7 @@ const vantLocales = {
   'en-US': enUS,
 }
 
-export const languageColumns : PickerColumn = [
+export const languageColumns: PickerColumn = [
   { text: '简体中文', value: 'zh-CN' },
   { text: 'English', value: 'en-US' },
 ]
@@ -25,7 +25,7 @@ export const locale = computed({
     return i18n.global.locale.value
   },
 
-  set(language : string) {
+  set(language: string) {
     setLang(language, i18n)
   },
 })
@@ -40,7 +40,7 @@ function setupI18n() {
   return i18n
 }
 
-async function setLang(lang : string, i18n : I18n) {
+async function setLang(lang: string, i18n: I18n) {
   await loadLocaleMsg(lang, i18n)
 
   document.querySelector('html').setAttribute('lang', lang)
@@ -52,7 +52,7 @@ async function setLang(lang : string, i18n : I18n) {
 }
 
 // 加载本地语言包
-async function loadLocaleMsg(locale : string, i18n : I18n) {
+async function loadLocaleMsg(locale: string, i18n: I18n) {
   const messages = await import(`../locales/${locale}.json`)
   i18n.global.setLocaleMessage(locale, messages.default)
 }

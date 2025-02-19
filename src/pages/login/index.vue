@@ -1,60 +1,60 @@
 <script setup lang="ts">
-  import { type RouteMap, useRouter } from 'vue-router'
+import { type RouteMap, useRouter } from 'vue-router'
 
-  import vw from '@/utils/inline-px-to-vw'
-  import { useAuthStore, useUserStore } from '@/stores'
+import vw from '@/utils/inline-px-to-vw'
+import { useAuthStore, useUserStore } from '@/stores'
 
-  import logo from '~/images/logo.svg'
-  import logoDark from '~/images/logo-dark.svg'
+import logo from '~/images/logo.svg'
+import logoDark from '~/images/logo-dark.svg'
 
-  const { t } = useI18n()
-  const router = useRouter()
-  const userStore = useUserStore()
-  const authStore = useAuthStore()
+const { t } = useI18n()
+const router = useRouter()
+const userStore = useUserStore()
+const authStore = useAuthStore()
 
-  const loading = ref(false)
+const loading = ref(false)
 
-  const dark = ref<boolean>(isDark.value)
+const dark = ref<boolean>(isDark.value)
 
-  watch(
-    () => isDark.value,
-    (newMode) => {
-      dark.value = newMode
-    },
-  )
+watch(
+  () => isDark.value,
+  (newMode) => {
+    dark.value = newMode
+  },
+)
 
-  const postData = reactive({
-    email: '',
-    password: '',
-  })
+const postData = reactive({
+  email: '',
+  password: '',
+})
 
-  const rules = reactive({
-    email: [
-      { required: true, message: t('login.pleaseEnterEmail') },
-    ],
-    password: [
-      { required: true, message: t('login.pleaseEnterPassword') },
-    ],
-  })
+const rules = reactive({
+  email: [
+    { required: true, message: t('login.pleaseEnterEmail') },
+  ],
+  password: [
+    { required: true, message: t('login.pleaseEnterPassword') },
+  ],
+})
 
-  async function login(values : any) {
-    try {
-      loading.value = true
-      const data = await userStore.login({ ...postData, ...values })
-      authStore.setToken(data.token)
+async function login(values: any) {
+  try {
+    loading.value = true
+    const data = await userStore.login({ ...postData, ...values })
+    authStore.setToken(data.token)
 
-      const { redirect, ...othersQuery } = router.currentRoute.value.query
-      router.push({
-        name: (redirect as keyof RouteMap) || 'home',
-        query: {
-          ...othersQuery,
-        },
-      })
-    }
-    finally {
-      loading.value = false
-    }
+    const { redirect, ...othersQuery } = router.currentRoute.value.query
+    router.push({
+      name: (redirect as keyof RouteMap) || 'home',
+      query: {
+        ...othersQuery,
+      },
+    })
   }
+  finally {
+    loading.value = false
+  }
+}
 </script>
 
 <template>
@@ -69,7 +69,10 @@
       </div>
 
       <div class="mt-16 overflow-hidden rounded-3xl">
-        <van-field v-model="postData.password" type="password" :rules="rules.password" name="password" :placeholder="t('login.password')" />
+        <van-field
+          v-model="postData.password" type="password" :rules="rules.password" name="password"
+          :placeholder="t('login.password')"
+        />
       </div>
 
       <div class="mt-16">

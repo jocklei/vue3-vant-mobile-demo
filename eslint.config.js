@@ -16,7 +16,8 @@ export default antfu(
   {
     rules: {
       'no-console': 'off',
-      'no-unused-vars': 'true',
+      'comma-dangle': ['error', 'always-multiline'],
+      'no-unused-vars': 'off',
       'no-useless-catch': 'off',
       'unicorn/no-new-array': 'off',
       'perfectionist/sort-imports': 'off',

@@ -1,12 +1,14 @@
 import { defineStore } from 'pinia'
 
-import { Contract, Web3, type Transaction, type Web3Account } from 'web3'
+import Web3 from 'web3'
+import type { Contract, Transaction, Web3Account } from 'web3'
 
 export interface TransactionParams {
-  from: string; to: string;
-  nonce: number;
-  value: number | string;
-  gas: number;
+  from: string
+  to: string
+  nonce: number
+  value: number | string
+  gas: number
   gasPrice: number
   privateKey: string
 }
@@ -17,11 +19,11 @@ const useWeb3Store = defineStore('web3', () => {
 
   web3.eth.net.isListening()
     .then(() => {
-      console.log('Connected to the Ethereum network');
+      console.log('Connected to the Ethereum network')
     })
     .catch((error) => {
-      console.error('Failed to connect to the Ethereum network:', error);
-    });
+      console.error('Failed to connect to the Ethereum network:', error)
+    })
 
   /**
    * @description 创建一个新的 Web3 账户。
@@ -41,7 +43,7 @@ const useWeb3Store = defineStore('web3', () => {
    */
   async function getAccounts(): Promise<string[]> {
     return await web3.eth.getAccounts()
-  };
+  }
 
   /**
    * @description 获取指定地址的账户余额。
@@ -116,7 +118,7 @@ const useWeb3Store = defineStore('web3', () => {
    * @return {*}  {string}
    */
   function toEth(value: bigint): string {
-    return web3.utils.fromWei(value, "ether")
+    return web3.utils.fromWei(value, 'ether')
   }
 
   /**
@@ -127,7 +129,7 @@ const useWeb3Store = defineStore('web3', () => {
    * @return {*}  {string}
    */
   function toWei(value: number | string): string {
-    return web3.utils.toWei(value, "ether")
+    return web3.utils.toWei(value, 'ether')
   }
 
   /**
@@ -167,7 +169,7 @@ const useWeb3Store = defineStore('web3', () => {
       const params = {
         from,
         to,
-        value: toWei(value)
+        value: toWei(value),
       }
       web3.eth.sendTransaction(params)
         .then(resolve)
@@ -201,7 +203,7 @@ const useWeb3Store = defineStore('web3', () => {
     signTransaction,
     sendTransaction,
     getTransactionCount,
-    sendSignedTransaction
+    sendSignedTransaction,
   }
 })
 export default useWeb3Store

@@ -1,4 +1,4 @@
-import { uuid } from 'vue-uuid';
+import { uuid } from 'vue-uuid'
 import { defineMock } from 'vite-plugin-mock-dev-server'
 
 import { builder } from '../util'

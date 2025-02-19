@@ -50,10 +50,9 @@ const useAuthStore = defineStore('auth', () => {
     isLogin,
     setToken,
     getToken,
-    clearToken
+    clearToken,
   }
 }, {
-  persist: true
+  persist: true,
 })
 export default useAuthStore
-

@@ -1,85 +1,91 @@
 <script setup lang="ts">
-  import { useRouter } from 'vue-router'
-  import type { FieldRule } from 'vant'
-  import { useUserStore } from '@/stores'
-  import vw from '@/utils/inline-px-to-vw'
+import { useRouter } from 'vue-router'
+import type { FieldRule } from 'vant'
+import { useUserStore } from '@/stores'
+import vw from '@/utils/inline-px-to-vw'
 
-  const { t } = useI18n()
-  const router = useRouter()
-  const loading = ref(false)
-  const userStore = useUserStore()
+const { t } = useI18n()
+const router = useRouter()
+const loading = ref(false)
+const userStore = useUserStore()
 
-  const postData = reactive({
-    email: '',
-    code: '',
-    password: '',
-    confirmPassword: '',
-  })
+const postData = reactive({
+  email: '',
+  code: '',
+  password: '',
+  confirmPassword: '',
+})
 
-  const validatorPassword = (val : string) => val === postData.password
+const validatorPassword = (val: string) => val === postData.password
 
-  const rules = reactive({
-    email: [
-      { required: true, message: t('forgot-password.pleaseEnterEmail') },
-    ],
-    code: [
-      { required: true, message: t('forgot-password.pleaseEnterCode') },
-    ],
-    password: [
-      { required: true, message: t('forgot-password.pleaseEnterPassword') },
-    ],
-    confirmPassword: [
-      { required: true, message: t('forgot-password.pleaseEnterConfirmPassword') },
-      { required: true, validator: validatorPassword, message: t('forgot-password.passwordsDoNotMatch') },
-    ] as FieldRule[],
-  })
+const rules = reactive({
+  email: [
+    { required: true, message: t('forgot-password.pleaseEnterEmail') },
+  ],
+  code: [
+    { required: true, message: t('forgot-password.pleaseEnterCode') },
+  ],
+  password: [
+    { required: true, message: t('forgot-password.pleaseEnterPassword') },
+  ],
+  confirmPassword: [
+    { required: true, message: t('forgot-password.pleaseEnterConfirmPassword') },
+    { required: true, validator: validatorPassword, message: t('forgot-password.passwordsDoNotMatch') },
+  ] as FieldRule[],
+})
 
-  async function reset() {
-    try {
-      loading.value = true
+async function reset() {
+  try {
+    loading.value = true
 
-      const res = await userStore.reset()
+    const res = await userStore.reset()
 
-      if (res.code === 0) {
-        showNotify({ type: 'success', message: t('forgot-password.passwordResetSuccess') })
-        router.push({ name: 'login' })
-      }
-    }
-    finally {
-      loading.value = false
+    if (res.code === 0) {
+      showNotify({ type: 'success', message: t('forgot-password.passwordResetSuccess') })
+      router.push({ name: 'login' })
     }
   }
-
-  const isGettingCode = ref(false)
-
-  const buttonText = computed(() => {
-    return isGettingCode.value ? t('forgot-password.gettingCode') : t('forgot-password.getCode')
-  })
-
-  async function getCode() {
-    if (!postData.email) {
-      showNotify({ type: 'warning', message: t('forgot-password.pleaseEnterEmail') })
-      return
-    }
-
-    isGettingCode.value = true
-    const res = await userStore.getCode()
-    if (res.code === 0)
-      showNotify({ type: 'success', message: `${t('forgot-password.sendCodeSuccess')}: ${res.result}` })
-
-    isGettingCode.value = false
+  finally {
+    loading.value = false
   }
+}
+
+const isGettingCode = ref(false)
+
+const buttonText = computed(() => {
+  return isGettingCode.value ? t('forgot-password.gettingCode') : t('forgot-password.getCode')
+})
+
+async function getCode() {
+  if (!postData.email) {
+    showNotify({ type: 'warning', message: t('forgot-password.pleaseEnterEmail') })
+    return
+  }
+
+  isGettingCode.value = true
+  const res = await userStore.getCode()
+  if (res.code === 0)
+    showNotify({ type: 'success', message: `${t('forgot-password.sendCodeSuccess')}: ${res.result}` })
+
+  isGettingCode.value = false
+}
 </script>
 
 <template>
   <div class="m-x-a w-7xl text-center">
     <van-form :model="postData" :rules="rules" validate-trigger="onSubmit" @submit="reset">
       <div class="overflow-hidden rounded-3xl">
-        <van-field v-model.trim="postData.email" :rules="rules.email" name="email" :placeholder="t('forgot-password.email')" />
+        <van-field
+          v-model.trim="postData.email" :rules="rules.email" name="email"
+          :placeholder="t('forgot-password.email')"
+        />
       </div>
 
       <div class="mt-16 overflow-hidden rounded-3xl">
-        <van-field v-model.trim="postData.code" :rules="rules.code" name="code" :placeholder="t('forgot-password.code')">
+        <van-field
+          v-model.trim="postData.code" :rules="rules.code" name="code"
+          :placeholder="t('forgot-password.code')"
+        >
           <template #button>
             <van-button size="small" type="primary" plain @click="getCode">
               {{ buttonText }}
@@ -89,11 +95,17 @@
       </div>
 
       <div class="mt-16 overflow-hidden rounded-3xl">
-        <van-field v-model.trim="postData.password" type="password" :rules="rules.password" name="password" :placeholder="t('forgot-password.password')" />
+        <van-field
+          v-model.trim="postData.password" type="password" :rules="rules.password" name="password"
+          :placeholder="t('forgot-password.password')"
+        />
       </div>
 
       <div class="mt-16 overflow-hidden rounded-3xl">
-        <van-field v-model.trim="postData.confirmPassword" type="password" :rules="rules.confirmPassword" name="confirmPassword" :placeholder="t('forgot-password.comfirmPassword')" />
+        <van-field
+          v-model.trim="postData.confirmPassword" type="password" :rules="rules.confirmPassword"
+          name="confirmPassword" :placeholder="t('forgot-password.comfirmPassword')"
+        />
       </div>
 
       <div class="mt-16">

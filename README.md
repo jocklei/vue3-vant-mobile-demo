@@ -191,7 +191,6 @@ Go to [Netlify](https://app.netlify.com/start) and select your clone, `OK` along
 
 We recommend that [issue](https://github.com/easy-temps/vue3-vant-mobile-demo/issues) be used for problem feedback, or [Wechat group](https://github.com/easy-temps/vue3-vant-mobile-demo/issues/56).
 
-
 ## License
 
 [MIT](./LICENSE) License

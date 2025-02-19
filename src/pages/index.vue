@@ -1,40 +1,40 @@
 <script setup lang="ts">
-  import type { PickerColumn } from 'vant'
+import type { PickerColumn } from 'vant'
 
-  import useAppStore from '@/stores/modules/app'
-  import { languageColumns, locale } from '@/utils/i18n'
+import useAppStore from '@/stores/modules/app'
+import { languageColumns, locale } from '@/utils/i18n'
 
-  const appStore = useAppStore()
-  const checked = ref<boolean>(isDark.value)
+const appStore = useAppStore()
+const checked = ref<boolean>(isDark.value)
 
-  function toggle() {
-    toggleDark()
-    appStore.switchMode(isDark.value ? 'dark' : 'light')
-  }
+function toggle() {
+  toggleDark()
+  appStore.switchMode(isDark.value ? 'dark' : 'light')
+}
 
-  const { t } = useI18n()
+const { t } = useI18n()
 
-  const showLanguagePicker = ref(false)
-  const languageValues = ref<Array<string>>([locale.value])
-  const language = computed(() => languageColumns.find(l => l.value === locale.value).text)
+const showLanguagePicker = ref(false)
+const languageValues = ref<Array<string>>([locale.value])
+const language = computed(() => languageColumns.find(l => l.value === locale.value).text)
 
-  function onLanguageConfirm(event : { selectedOptions : PickerColumn }) {
-    locale.value = event.selectedOptions[0].value as string
-    showLanguagePicker.value = false
-  }
+function onLanguageConfirm(event: { selectedOptions: PickerColumn }) {
+  locale.value = event.selectedOptions[0].value as string
+  showLanguagePicker.value = false
+}
 
-  const menuItems = computed(() => ([
-    { title: t('menus.mockGuide'), route: 'mock' },
-    { title: t('menus.echartsDemo'), route: 'charts' },
-    { title: t('menus.unocssExample'), route: 'unocss' },
-    { title: t('menus.persistPiniaState'), route: 'counter' },
-    { title: t('menus.keepAlive'), route: 'keepalive' },
-    { title: t('menus.vueuse'), route: 'vueuse' },
-    { title: t('menus.web3'), route: 'web3' },
-    { title: t('menus.web3-meta-mask'), route: 'web3-meta-mask' },
-    { title: t('menus.web3-to-contract'), route: 'web3-to-contract' },
-    { title: t('menus.404Demo'), route: 'unknown' },
-  ]))
+const menuItems = computed(() => ([
+  { title: t('menus.mockGuide'), route: 'mock' },
+  { title: t('menus.echartsDemo'), route: 'charts' },
+  { title: t('menus.unocssExample'), route: 'unocss' },
+  { title: t('menus.persistPiniaState'), route: 'counter' },
+  { title: t('menus.keepAlive'), route: 'keepalive' },
+  { title: t('menus.vueuse'), route: 'vueuse' },
+  { title: t('menus.web3'), route: 'web3' },
+  { title: t('menus.web3-meta-mask'), route: 'web3-meta-mask' },
+  { title: t('menus.web3-to-contract'), route: 'web3-to-contract' },
+  { title: t('menus.404Demo'), route: 'unknown' },
+]))
 </script>
 
 <template>
@@ -55,7 +55,10 @@
   </VanCellGroup>
 
   <van-popup v-model:show="showLanguagePicker" position="bottom">
-    <van-picker v-model="languageValues" :columns="languageColumns" @confirm="onLanguageConfirm" @cancel="showLanguagePicker = false" />
+    <van-picker
+      v-model="languageValues" :columns="languageColumns" @confirm="onLanguageConfirm"
+      @cancel="showLanguagePicker = false"
+    />
   </van-popup>
 </template>
 
